@@ -8,18 +8,18 @@
             "name": "ft_otp 64hex master key",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["-g", "7367492C3A41525A593C45322B32437A7D6A37377B7D3140513754377721245D747C4B22616F476B3D73415A58364231372C7474716C405D45616426212B23"],
+            "args": ["-g", "1283674c7e9ef7d39926ea890179a2b36b5b83823403cb544b267a36d09346e4"],
             "justMyCode": true
         },
         {
-            "name": "ft_otp normal ascii master key",
+            "name": "ft_otp 64hex totp",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["-g", "hola"],
+            "args": ["-k", "ft_otp.key"],
             "justMyCode": true
         }
     ]
