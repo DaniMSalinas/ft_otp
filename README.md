@@ -3,10 +3,13 @@
 PYTHON PROGRAM TO GENERATE TIME BASED ONE TIME PASSWORD.
 
 The program is based on the RFC 6238 and RFC 4226:
+
     - https://datatracker.ietf.org/doc/html/rfc6238
+    
     - https://datatracker.ietf.org/doc/html/rfc4226
 
 The program has two ways of working:
+
     - using '-g' in order to generate a master_key ft_otp.key
     - using '-k' in order to generate a TIME_BASED One Time Password
 
