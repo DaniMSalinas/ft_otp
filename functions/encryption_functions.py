@@ -13,3 +13,10 @@ def decrypt(file, key):
         encrypted = keyfile.read()
     decrypted = fernet.decrypt(encrypted)
     return bytes.hex(decrypted)
+
+def generate_token():
+    """Function to generate random ciphering token"""
+    key = Fernet.generate_key()
+    with open('__data__/token', 'wb') as tokenfile:
+        tokenfile.write(key)
+    return key

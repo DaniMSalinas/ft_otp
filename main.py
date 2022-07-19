@@ -12,7 +12,7 @@ def main():
             print ("Hay que introducir una clave")
     elif sys.argv[1] == "-k":
         if sys.argv[2]:
-            print(totp_functions.totp(sys.argv[2], 30, 6, 'sha256'))
+            print(totp_functions.totp(sys.argv[2]))
         else:
             print ("Hay que pasar golden ticket")
 
