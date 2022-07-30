@@ -1,7 +1,7 @@
 """Programa para generar un TOTP en python para el bootcamp de 42ciber"""
 import sys
-from functions import key_functions
-from functions import totp_functions
+from src import key_functions
+from src import totp_functions
 
 def main():
     """ main function bro"""
@@ -15,6 +15,8 @@ def main():
             print(totp_functions.totp(sys.argv[2]))
         else:
             print ("Hay que pasar golden ticket")
+    else:
+        print("Invalid command")
 
 if __name__ == "__main__":
     main()

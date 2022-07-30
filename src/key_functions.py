@@ -1,8 +1,7 @@
 """Library to validate and save hexadecimal keys"""
-from base64 import urlsafe_b64encode
-from bonus_functions.password_functions import set_password
-from bonus_functions.token_functions import generate_password_token
-from functions.encryption_functions import encrypt#, generate_token
+
+from src.token_functions import generate_password_token
+from src.encryption_functions import encrypt
 
 def validate_hexadecimal_key(key):
     """Function to validate master key"""
@@ -25,12 +24,17 @@ def count_key_length(key):
 
 def save_key(key):
     """Function used to save the master key on a ciphered .key file"""
-    password = set_password() ### BONUS ##
-    token = generate_password_token(password)
-    encrypted = encrypt(bytes.fromhex(key), token)
-    with open('__data__/ft_otp.key', 'wb') as keyfile:
+    password = bytes(set_password(), "utf-8")
+    password_key = generate_password_token(password)
+    encrypted = encrypt(bytes.fromhex(key), password_key)
+    with open('data/ft_otp.key', 'wb') as keyfile:
         keyfile.write(encrypted)
+        keyfile.close()
 
-def hex2base64(key):
-    """Function to change hexadecimal base to safe Base64 bytearray"""
-    return urlsafe_b64encode(bytes.fromhex(key))
+def set_password():
+    """Function to set a password for the master key"""
+    return str(input("Set a password for the master key: "))
+
+def ask_password():
+    """Function to ask the password for the master key"""
+    return str(input("Write the password of the master key: "))
