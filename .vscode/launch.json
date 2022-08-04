@@ -19,7 +19,7 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["-k", "ft_otp.key"],
+            "args": ["-k", "data/ft_otp.key"],
             "justMyCode": true
         }
     ]

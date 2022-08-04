@@ -16,4 +16,4 @@ def decrypt(message, key):
     initial_vector = message[:AES.block_size]
     decipher = AES.new(key, AES.MODE_CBC, initial_vector)
     data = decipher.decrypt(message)
-    return data[:-ord(data[len(data) - 1:])]
+    return data[AES.block_size:-ord(data[len(data) - 1:])]
