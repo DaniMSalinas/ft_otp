@@ -1,19 +1,19 @@
 """Module to generate Time based one time password"""
 import hmac
 import time
-import base64
+from base64 import b32decode
 from src.encryption_functions import decrypt
 from src.key_functions import ask_password
 from src.key_functions import generate_password_token
 
 def hotp(key, counter, digits=6, digest='sha1'):
     """Function to generate hotp"""
-    key = base64.b32decode(key)
+    key = b32decode(key)#.hex().encode("utf-8")
     counter = counter.to_bytes(8, byteorder='big') #counter = struct.pack('>Q', counter)
     mac = hmac.new(key, counter, digest)
     mac = mac.digest() #datatracker.ietf.org/doc/html/rfc4226#section-5
     offset = mac[-1] & 0x0f #se buscan the lower 4 bits
-    binary = int.from_bytes(mac[offset:offset+4], 'big',signed=False)
+    binary = int.from_bytes(mac[offset:offset+4], 'big',signed=False) & 0x7fffffff
     #binary = struct.unpack('>L', mac[offset:offset+4])[0] & 0x7fffffff
     return str(binary)[-digits:]
 

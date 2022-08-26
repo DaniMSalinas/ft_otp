@@ -1,8 +1,8 @@
 """Library to validate and save hexadecimal keys"""
+from base64 import b32encode
 from Cryptodome.Hash import SHA256
 from Cryptodome.Protocol.KDF import PBKDF2
 from src.encryption_functions import encrypt
-from base64 import b32decode, b32encode, b32hexdecode
 
 def validate_hexadecimal_key(key):
     """Function to validate master key"""
@@ -26,6 +26,7 @@ def count_key_length(key):
 def save_key(key):
     """Function used to save the master key on a ciphered .key file"""
     password = bytes(set_password(), "utf-8")
+    #key = bytes.fromhex(key)
     key = key.encode("utf-8")
     encrypted = encrypt(b32encode(key), generate_password_token(password))
     with open('data/ft_otp.key', 'wb') as keyfile:
@@ -37,11 +38,6 @@ def generate_password_token(password):
     salt = bytes.fromhex("5ef8572d3738892f309f1b5d56170c8c")
     token = PBKDF2(password, salt, 64, 1000, hmac_hash_module=SHA256)
     return token[-16:]
-
-def change_to_base32(key):
-    """Function changes the key to base32"""
-    key = b32encode(key)
-    return b32decode(key)
 
 def set_password():
     """Function to set a password for the master key"""
