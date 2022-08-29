@@ -29,7 +29,7 @@ def save_key(key):
     #key = bytes.fromhex(key)
     key = key.encode("utf-8")
     encrypted = encrypt(b32encode(key), generate_password_token(password))
-    with open('data/ft_otp.key', 'wb') as keyfile:
+    with open('ft_otp.key', 'wb') as keyfile:
         keyfile.write(encrypted)
         keyfile.close()
 
